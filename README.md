@@ -77,9 +77,9 @@ Nenhum
 
 #### Local Files
 
-Para rodar o projeto, é preciso ter na raiz do projeto, um arquivo `.env` com as seguintes chaves:
+Para rodar a aplicação, é preciso ter na raiz do projeto, um arquivo `.env` com as seguintes chaves:
 
-<small>Em construção</small>
+_<small>Em construção</small>_
 
 ```
 PORT=porta onde o servidor vai rodar
@@ -95,7 +95,7 @@ ENV=ambiente em que o projeto está rodando [dev, prod, test]
 
 #### Comandos
 
-<small>Em construção</small>
+_<small>Em construção</small>_
 
 Os comandos abaixo podem ser rodados através do npm ou do yarn.
 
@@ -143,9 +143,14 @@ $ yarn deploy
 
 ### Testes
 
-O projeto permite realiar testes unitários e integrados. Todos os testes devem ser rodados em ambiente _test_, uma vez que que a aplicação vai usar uma base de dados apenas para testes e ao final da testagem essa base vai ser excluída.
+O projeto permite realizar testes unitários e integrados. Todos os testes devem ser rodados em ambiente _test_, uma vez que que a aplicação vai usar uma base de dados apenas para testes e ao final da testagem essa base vai ser excluída.
 
 Pode ser passado um arquivo específico para o teste ou, se deixar vazio, vai rodar todos os testes unitários existentes.
+_Setar a variável ENV para test_
+
+```
+ENV=test
+```
 
 #### Testes Unitários
 
@@ -176,7 +181,7 @@ yarn test:automated [nome_do_arquivo.spec.js]
 
 ### Deploy
 
-<small>Em construção</small>
+_<small>Em construção</small>_
 
 ### Funcionalidades
 
