@@ -5,8 +5,8 @@
   "main": "app/bin/server.ts",
   "scripts": {
     "dev": "nodemon",
-    "start": "node dist/bin/server.js",
-    "build": "babel app --out-dir build --no-copy-ignored",
+    "start": "node build/bin/server.js",
+    "build": "tsc -p .",
     "deploy": "echo Under construction",
     "test": "jest",
     "test:integrated": "jest __tests__/integrated",
