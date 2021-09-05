@@ -26,3 +26,5 @@ node_modules
 
 .editor
 .vscode
+
+tsconfig.ts*

@@ -9,7 +9,8 @@
     "target": "ES2021",
     "sourceMap": true,
     "outDir": "./build",
-    "baseUrl": "./app",
+    "rootDir": "./app",
+    "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
@@ -18,5 +19,12 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "__tests__",
+    "build",
+    "**/*(spec|test).[tj]s",
+    "**/jest*"
+  ]
 }
