@@ -10,10 +10,10 @@
 <img alt="Feitp por" src="https://img.shields.io/badge/Feito por-Felipe Paz-blue?style=flat"/>
 </p>
 
-<h1 align="center">MINI ERP</h1>
+<h1 align="center">Template Inicial NodeJs - TS & NoSQL</h1>
 
 <h2 align="center">
-Gerenciador de produtos, fornecedores e empresas
+Template com estrutura inicial para projetos com NodeJs, Typescript e NoSQL
 </h2>
 
 <br />
@@ -38,44 +38,36 @@ Gerenciador de produtos, fornecedores e empresas
   - [Testes Integrados](#testes-integrados)
   - [Testes Unitários](#testes-unitários)
 - [Deploy](#deploy)
-- [Funcionalidades](#funcionalidades)
 <!--te-->
 
-### Objetivos
+### Sobre
+É muito comum iniciarmos projetos do zero e muitas vezes não temos noção de como estruturar nossos arquivos e diretórios. Eu mesmo, toda a vez que preciso começar um projeto, acabo recriando tudo do zero e às vezes esqueço de alguma coisa ou me perco em configurar algo.
 
-Este é um projeto para demonstrar os conceitos e tecnologias mais abordadas atualmente.
+Pensando nisso, criei esse mini template que utiliza typescript e faz uso de banco não relacional, no caso Mongo (mongoose). Isso garante uma agilidade um pouco maior, uma vez que a estrutura inicial está pronta e não se perde tempo em o que instalar e como fazer.
 
-Vou tentar demonstrar técnicas como:
+### **Objetivos**
 
-- Testes unitários
-- Testes integrados
-- Testes automatizados
-- CI/CD
-- SOLID
-- Autenticação JWT
-- Cache (Redis)
-- Typescript
+Este é um template básico criado para facilitar o desenvolvimento de projetos que utilizem TS com Node e banco não relacional.
 
-### Tecnologias Utilizadas
+### **Tecnologias Utilizadas**
 
 Esse projeto utiliza tecnologias como:
 
-- [Docker](https://www.docker.com/)
 - [NodeJs >= 16](https://nodejs.org/en/download/current/)
 - [NPM >= 7.2](https://nodejs.org/en/download/current/)
-- [Redis](https://redis.io/)
-- [MongoDb >= 5.2](https://www.mongodb.com/try/download/community)
 - [Typescript >= 4.4](https://www.npmjs.com/package/typescript)
 
-### Como Usar
+### **Como Usar**
 
-Antes de mais nada, é obrigatório ter o [NodeJs](https://nodejs.org/en/download/current/), [Docker](https://www.docker.com/) instalados e um editor de texto, como por exemplo [VS Code](https://code.visualstudio.com/download).
+Antes de mais nada, é obrigatório ter o [NodeJs](https://nodejs.org/en/download/current/) instalado e um editor de texto, como por exemplo [VS Code](https://code.visualstudio.com/download).
 
-#### Pré requisitos
+É interessante também, ter o [Docker](https://www.docker.com/) instalado, caso não queira baixar programas e seus binários como [MongoDb >= 5.2](https://www.mongodb.com/try/download/community) ou [Redis](https://redis.io/)
+
+#### **Pré requisitos**
 
 Nenhum
 
-#### Local Files
+#### **Local Files**
 
 Para rodar a aplicação, é preciso ter na raiz do projeto, um arquivo `.env` com as seguintes chaves:
 
@@ -93,7 +85,9 @@ PASS_KEY=chave para compor o token de autenticação
 ENV=ambiente em que o projeto está rodando [dev, prod, test]
 ```
 
-#### Comandos
+_Outras chaves necessários ao seu projeto poderão/deverão ser adicionadas ao arquivo .env_
+
+#### **Comandos**
 
 _<small>Em construção</small>_
 
@@ -141,11 +135,12 @@ $ npm deploy
 $ yarn deploy
 ```
 
-### Testes
+### **Testes**
 
-O projeto permite realizar testes unitários e integrados. Todos os testes devem ser rodados em ambiente _test_, uma vez que que a aplicação vai usar uma base de dados apenas para testes e ao final da testagem essa base vai ser excluída.
+O projeto foi pensado em uma estrutura voltada a TDD (_Test Driven Design_), ou seja, quanto mais testes melhor. Todos os testes devem ser rodados em ambiente _test_, uma vez que que a aplicação vai usar uma base de dados apenas para testes e ao final da testagem essa base vai ser excluída.
 
 Pode ser passado um arquivo específico para o teste ou, se deixar vazio, vai rodar todos os testes unitários existentes.
+
 _Setar a variável ENV para test_
 
 ```
@@ -179,22 +174,6 @@ npm run test:automated [nome_do_arquivo.spec.js]
 yarn test:automated [nome_do_arquivo.spec.js]
 ```
 
-### Deploy
+### **Deploy**
 
 _<small>Em construção</small>_
-
-### Funcionalidades
-
-- [ ] Empresas: Pode ser cadastrado e gerenciado dados das empresas quando:
-  - [ ] sendo matriz
-  - [ ] sendo filial
-- [ ] Fornecedores: Pode ser cadastrado e gerenciado dados de fornecedores
-- [ ] Produtos: Pode ser cadastrado e gerenciado dados de produtos através da API ou:
-  - [ ] importando arquivo TXT
-  - [ ] importando arquivo XML
-- [ ] Configurações do sistema:
-  - [ ] Cadastro de e-mail
-  - [ ] Envio de e-mail quando produtos estiverem abaixo do estoque ou zerados
-- [ ] Alertas:
-  - [ ] Envio de e-mail quando produtos estiverem abaixo do estoque ou zerados
-- [ ] Usuários com níveis de permissão
