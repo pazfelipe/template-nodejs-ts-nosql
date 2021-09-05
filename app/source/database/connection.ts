@@ -1,9 +1,10 @@
+import 'dotenv/config';
 import mongoose from 'mongoose';
 
-class Connection {
-  private url;
-  private port;
-  private db;
+class ConnectionSession {
+  url: string;
+  port: string;
+  db: string;
 
   constructor() {
     this.url =
@@ -20,9 +21,9 @@ class Connection {
         : process.env.DB_NAME;
   }
 
-  protected connection() {
+  connection(): Promise<typeof mongoose> {
     return mongoose.connect(`mongodb://${this.url}:${this.port}/${this.db}`);
   }
 }
 
-export default Connection;
+export default ConnectionSession;
