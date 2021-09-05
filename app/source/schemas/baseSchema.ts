@@ -1,4 +1,4 @@
-import { Connection, Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import DatabaseConnector from '../database/connection';
 
 class BaseSchema {
@@ -6,79 +6,87 @@ class BaseSchema {
   private collectionName: string;
   private connectionSession: any;
 
-  constructor(collection: string, schema: Schema) {
+  /**
+   * Schema Default para conexão com o banco
+   * @param collection Nome da collection
+   * @param schema Schema da collection
+   */
+  constructor(collection: string, schema: Record<string, any>) {
     this.collectionName = collection;
     this.schemaObject = new Schema(schema);
-    this.connectionSession = new DatabaseConnector();
   }
 
-  private connect(): Connection {
-    return this.connectionSession.connection();
+  private async connect(): Promise<typeof mongoose> {
+    const connectionSession = new DatabaseConnector();
+    return await connectionSession.connection();
   }
 
-  private create() {
-    if (
-      !this.connect()
-        .modelNames()
-        .some((p: string) => p === this.collectionName)
-    ) {
-      return this.connect().model(this.collectionName, this.schemaObject);
+  private async create() {
+    const con = await this.connect();
+
+    if (!con.modelNames().some((p: string) => p === this.collectionName)) {
+      return con.model(this.collectionName, this.schemaObject);
     }
-    return this.connect().model(this.collectionName);
+
+    return con.model(this.collectionName);
   }
 
-  private model() {
-    return this.create();
+  private async model() {
+    return await this.create();
   }
 
-  protected async insert(data: Record<string, any>): Promise<void> {
+  /**
+   * Grava um Objeto ou array de objetos no banco
+   * @param data Objeto para ser cadastrado no banco
+   */
+  async insert(
+    data: Record<string, any> | Array<Record<string, any>>,
+  ): Promise<void> {
     const d = Array.isArray(data) ? data : [data];
-    await this.model().insertMany(d);
+    await (await this.model()).insertMany(d);
   }
 
-  protected async findOne(
-    filter: Record<string, any>,
-  ): Promise<Record<string, any>> {
-    return this.model().findOne(filter);
+  async findOne(filter: Record<string, any>): Promise<Record<string, any>> {
+    return (await this.model()).findOne(filter);
   }
 
-  protected async find(
+  async find(
     filter: Record<string, any>,
     options = undefined,
   ): Promise<Record<string, any>> {
-    return this.model().find(filter, options);
+    return (await this.model()).find(filter, options);
   }
 
-  protected async updateOne(
+  async updateOne(
     filter: Record<string, any>,
     data: Record<string, any>,
   ): Promise<void> {
-    await this.model().findOneAndUpdate(filter, data);
+    await (await this.model()).findOneAndUpdate(filter, data);
   }
 
-  protected async update(
+  async update(
     filter: Record<string, any>,
     data: Record<string, any>[],
   ): Promise<void> {
-    await this.model().updateMany(filter, data);
+    await (await this.model()).updateMany(filter, data);
   }
 
-  protected async removeOne(filter: Record<string, any>): Promise<void> {
-    await this.model().findOneAndDelete(filter);
+  async removeOne(filter: Record<string, any>): Promise<void> {
+    await (await this.model()).findOneAndDelete(filter);
   }
 
-  protected async remove(
+  async remove(
     filter: Record<string, any>,
     options?: Record<string, any>,
   ): Promise<void> {
-    await this.model().deleteMany(filter, options);
+    await (await this.model()).deleteMany(filter, options);
   }
 
-  protected async aggregate(
+  async aggregate(
     pipeline: Record<string, any>[],
     options?: Record<string, any>,
   ): Promise<Record<string, any>[]> {
-    return this.model().aggregate(pipeline, options);
+    return (await this.model()).aggregate(pipeline, options);
   }
 }
 
