@@ -5,7 +5,7 @@
   "main": "app/bin/server.ts",
   "scripts": {
     "dev": "nodemon",
-    "start": "node build/bin/server.js",
+    "start": "node build/app/bin/server.js",
     "build": "tsc -p .",
     "deploy": "echo Under construction",
     "test": "ENV=test jest __tests__/unity",
