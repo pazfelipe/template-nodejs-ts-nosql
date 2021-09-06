@@ -41,6 +41,7 @@ Template com estrutura inicial para projetos com NodeJs, Typescript e NoSQL
 <!--te-->
 
 ### Sobre
+
 É muito comum iniciarmos projetos do zero e muitas vezes não temos noção de como estruturar nossos arquivos e diretórios. Eu mesmo, toda a vez que preciso começar um projeto, acabo recriando tudo do zero e às vezes esqueço de alguma coisa ou me perco em configurar algo.
 
 Pensando nisso, criei esse mini template que utiliza typescript e faz uso de banco não relacional, no caso Mongo (mongoose). Isso garante uma agilidade um pouco maior, uma vez que a estrutura inicial está pronta e não se perde tempo em o que instalar e como fazer.
@@ -130,6 +131,7 @@ $ yarn build
 ```
 
 _Deploying_ da aplicação
+_em construção_
 
 ```bash
 $ npm deploy
@@ -142,15 +144,17 @@ O projeto foi pensado em uma estrutura voltada a TDD (_Test Driven Design_), ou 
 
 Pode ser passado um arquivo específico para o teste ou, se deixar vazio, vai rodar todos os testes unitários existentes.
 
-_Setar a variável ENV para test_
+_Setar a variável ENV para test. Pode ser passado diretamente no packge.json, como no exemplo do projeto, ou diretamente na chamada do comando no temrinal/prompt._
 
-```
+```bash
 ENV=test
 ```
 
 #### Testes Unitários
 
-Realiza testes unitários, ou seja, apenas de funções menores.
+Realiza testes unitários, ou seja, apenas blocos de funções sem integração alguma. Geralmente utilizado quando está sendo construída uma rotina na aplicação.
+
+Entende-se rotina qualquer função que processe dados, seja entregando, modificando e ou armazenando-os.
 
 ```bash
 npm run test [nome_do_arquivo.spec.js]
@@ -159,7 +163,7 @@ yarn test [nome_do_arquivo.spec.js]
 
 #### Testes Integrados
 
-Realiza testes integrados, ou seja, funções que dependam de outros serviços/módulos, como no caso de conexões com o banco de dados.
+Realiza testes integrados, ou seja, funções que dependam de outros serviços/módulos, como no caso de rotinas que vão gravar dados no banco.
 
 ```bash
 npm run test:integrated [nome_do_arquivo.spec.js]
