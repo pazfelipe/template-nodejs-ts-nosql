@@ -144,7 +144,7 @@ O projeto foi pensado em uma estrutura voltada a TDD (_Test Driven Design_), ou 
 
 Pode ser passado um arquivo específico para o teste ou, se deixar vazio, vai rodar todos os testes unitários existentes.
 
-_Setar a variável ENV para test. Pode ser passado diretamente no packge.json, como no exemplo do projeto, ou diretamente na chamada do comando no temrinal/prompt._
+_Setar a variável ENV para test. Pode ser configurada no packge.json, como no exemplo do projeto, ou diretamente na chamada do comando no terminal/prompt._
 
 ```bash
 ENV=test
