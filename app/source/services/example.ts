@@ -1,6 +1,6 @@
 import { GeneralError } from './../utils/general';
 import { ExampleDto } from './../interfaces/example';
-import ExampleSchema from '../schemas/example';
+import ExampleModel from '../models/example';
 
 export const exampleCreate = async (
   data: ExampleDto,
@@ -15,7 +15,7 @@ export const exampleCreate = async (
   };
 
   try {
-    const model = new ExampleSchema();
+    const model = new ExampleModel();
     await model.insert(register);
 
     return { message: 'Registro criado com sucesso' };
