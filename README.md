@@ -83,6 +83,7 @@ DB_HOST_TEST=ip/dominio do banco de dados para testes
 DB_PORT_TEST=porta onde o banco estiver rodando para testes
 PASS_KEY=chave para compor o token de autenticação
 ENV=ambiente em que o projeto está rodando [dev, prod, test]
+SALT=salt key usada para gerar o token de autenticação
 ```
 
 _Outras chaves necessários ao seu projeto poderão/deverão ser adicionadas ao arquivo .env_
