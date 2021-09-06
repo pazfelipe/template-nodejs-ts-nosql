@@ -9,13 +9,9 @@ describe('Um exemplo de teste automatizado', () => {
   let app: Server;
   let cookie: string;
 
-  beforeAll(() => {
+  beforeAll((done) => {
     app = server.listen(process.env.PORT);
-  });
-
-  beforeEach((done) => {
     url = `http://localhost:${process.env.PORT}/api`;
-
     request(url)
       .post('/example/login')
       .send({ username: 'example' })
