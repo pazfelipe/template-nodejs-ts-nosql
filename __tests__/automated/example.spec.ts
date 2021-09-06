@@ -7,13 +7,23 @@ import ConnectionSession from '../../app/source/database/connection';
 describe('Um exemplo de teste automatizado', () => {
   let url: string;
   let app: Server;
+  let cookie: string;
 
   beforeAll(() => {
     app = server.listen(process.env.PORT);
   });
 
-  beforeEach(() => {
+  beforeEach((done) => {
     url = `http://localhost:${process.env.PORT}/api`;
+
+    request(url)
+      .post('/example/login')
+      .send({ username: 'example' })
+      .then((response) => {
+        cookie = response.text;
+        done();
+      })
+      .catch((err) => done(err));
   });
 
   afterAll(async () => {
@@ -32,6 +42,7 @@ describe('Um exemplo de teste automatizado', () => {
 
     request(url)
       .post('/example')
+      .set('Authorization', cookie)
       .send(register)
       .expect(201)
       .then((response) => {
@@ -55,12 +66,24 @@ describe('Um exemplo de teste automatizado', () => {
 
     request(url)
       .post('/example')
+      .set('Authorization', cookie)
       .send(register)
       .expect(400)
       .then((response) => {
         expect(JSON.parse(response.text)).toMatchObject<Result>({
           messages: ['Campo name é obrigatório'],
         });
+        done();
+      })
+      .catch((err) => done(err));
+  });
+
+  it('deveria retornar um erro HTTP 401', (done) => {
+    request(url)
+      .post('/example')
+      .send({})
+      .expect(401)
+      .then(() => {
         done();
       })
       .catch((err) => done(err));
