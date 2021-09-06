@@ -23,11 +23,11 @@ describe('Um exemplo de teste automatizado', () => {
   });
 
   afterAll(async () => {
-    const session = new ConnectionSession();
-    const conn = await session.connection();
-    await conn.connection.db.dropDatabase();
-    await conn.disconnect();
-    app.unref();
+    const session = new ConnectionSession(); // instancia a conexão com o banco
+    const conn = await session.connection(); // recebe a conexão com o banco
+    await conn.connection.db.dropDatabase(); // deleta a base de teste
+    await conn.disconnect(); // disconecta do banco
+    app.unref(); // termina o processo node da aplicação
   });
 
   it('deveria cadastrar um novo registro acessando a url e retornar status 201', (done) => {
