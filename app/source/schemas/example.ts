@@ -2,7 +2,7 @@ import BaseSchema from './baseSchema';
 
 class ExampleSchema extends BaseSchema {
   constructor() {
-    super('test', {
+    super('example', {
       name: String,
       date: Date,
     });
