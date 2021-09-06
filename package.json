@@ -8,9 +8,9 @@
     "start": "node build/bin/server.js",
     "build": "tsc -p .",
     "deploy": "echo Under construction",
-    "test": "jest",
-    "test:integrated": "jest __tests__/integrated",
-    "test:automated": "jest __tests__/automated"
+    "test": "ENV=test jest __tests__/unity",
+    "test:integrated": "ENV=test jest __tests__/integrated",
+    "test:automated": "ENV=test jest __tests__/automated"
   },
   "engines": {
     "node": ">=16",
@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/pazfelipe/api-monolito-erp#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.15.4",
     "@types/cors": "^2.8.12",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.13",
@@ -45,6 +46,7 @@
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
+    "babel-jest": "^27.1.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
