@@ -4,7 +4,6 @@ import DatabaseConnector from '../database/connection';
 class BaseSchema {
   private schemaObject: Schema;
   private collectionName: string;
-  private connectionSession: any;
 
   /**
    * Schema Default para conexão com o banco
@@ -18,7 +17,7 @@ class BaseSchema {
 
   /**
    * Realiza a conexão com a instância do banco
-   * @returns 
+   * @returns
    */
   private async connect(): Promise<typeof mongoose> {
     const connectionSession = new DatabaseConnector();
@@ -28,7 +27,7 @@ class BaseSchema {
   /**
    * Retorna a collection, caso ela exista. Caso contrário, cria uma nova
    * collection recebendo no construtor da classe o nome da collection e o schema.
-   * @returns 
+   * @returns
    */
   private async create() {
     const con = await this.connect();
@@ -42,7 +41,7 @@ class BaseSchema {
 
   /**
    * Retorna o objeto model do mongoose com a collection informada
-   * @returns 
+   * @returns
    */
   private async model() {
     return await this.create();
@@ -62,7 +61,7 @@ class BaseSchema {
   /**
    * Retorna um registro com base no filtro informado
    * @param filter Filtro da query
-   * @returns 
+   * @returns
    */
   async findOne(filter: Record<string, any>): Promise<Record<string, any>> {
     return (await this.model()).findOne(filter);
@@ -73,11 +72,11 @@ class BaseSchema {
    * Também pode ser passados os filtros para a _projection_ do resultado
    * @param filter Filtro da Query
    * @param options Opções do retorno da projection
-   * @returns 
+   * @returns
    */
   async find(
     filter: Record<string, any>,
-    options?:Record<string, any>,
+    options?: Record<string, any>,
   ): Promise<Record<string, any>> {
     return (await this.model()).find(filter, options);
   }
@@ -86,7 +85,7 @@ class BaseSchema {
    * Atualiza um registro com base no filtro informado.
    * @param filter Filtro da Query
    * @param data Objeto contendo a atualização do registro
-   * @returns 
+   * @returns
    */
   async updateOne(
     filter: Record<string, any>,
@@ -99,7 +98,7 @@ class BaseSchema {
    * Atualiza um conjunto de registros com base no filtro informado.
    * @param filter Filtro da Query
    * @param data Objeto contendo a atualização do registro
-   * @returns 
+   * @returns
    */
   async update(
     filter: Record<string, any>,
@@ -111,7 +110,7 @@ class BaseSchema {
   /**
    * Deleta um registro com base no filtro informado.
    * @param filter Filtro da Query
-   * @returns 
+   * @returns
    */
   async removeOne(filter: Record<string, any>): Promise<void> {
     await (await this.model()).findOneAndDelete(filter);
@@ -121,7 +120,7 @@ class BaseSchema {
    * Deleta um conjunto de registros com base no filtro informado.
    * @param filter Filtro da Query
    * @param options Opções do retorno da projection
-   * @returns 
+   * @returns
    */
   async remove(
     filter: Record<string, any>,
@@ -134,7 +133,7 @@ class BaseSchema {
    * Deleta um registro com base no filtro informado.
    * @param pipeline Array contendo a aggregation com os passos da query
    * @param options Opções do retorno da projection
-   * @returns 
+   * @returns
    */
   async aggregate(
     pipeline: Record<string, any>[],
